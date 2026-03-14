@@ -71,3 +71,4 @@ export default defineConfig([
   },
 ])
 ```
+npx create-next-app@latest ANT-CELLS-FRONTED
