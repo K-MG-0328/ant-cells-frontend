@@ -1,0 +1,30 @@
+'use client';
+
+import { useEffect } from 'react';
+import { useAtomValue } from 'jotai';
+import { useRouter } from 'next/navigation';
+import { authAtom } from '@/features/auth/application/atoms/authAtom';
+
+export default function TermsPage() {
+  const authState = useAtomValue(authAtom);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (authState.status !== 'LOADING' && authState.status !== 'TEMPORARY_AUTH') {
+      router.replace('/login');
+    }
+  }, [authState.status, router]);
+
+  if (authState.status !== 'TEMPORARY_AUTH') {
+    return null;
+  }
+
+  //const { nickname, email } = authState.user;
+
+  return (
+    <div>
+      <h1>약관 동의</h1>
+
+    </div>
+  );
+}
