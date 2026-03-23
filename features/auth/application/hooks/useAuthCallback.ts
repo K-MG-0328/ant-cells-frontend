@@ -15,7 +15,13 @@ export function useAuthCallback() {
 
     authApi
       .fetchMe()
-      .then(({ user, is_registered }) => {
+      .then((result) => {
+        if (!result) {
+          setAuthState({ status: 'UNAUTHENTICATED' });
+          router.replace('/login');
+          return;
+        }
+        const { user, is_registered } = result;
         if (!is_registered) {
           setAuthState({ status: 'TEMPORARY_AUTH', user });
           router.replace('/terms');
