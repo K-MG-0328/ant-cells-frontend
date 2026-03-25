@@ -26,6 +26,9 @@ export default function BoardPage() {
             게시판
             <span className={s.titleSub}>Board</span>
           </h1>
+          <button className={s.createButton} onClick={() => router.push('/board/create')}>
+            + 글쓰기
+          </button>
         </div>
         <BoardList state={state} page={page} onPageChange={setPage} />
       </div>
